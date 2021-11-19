@@ -36,22 +36,20 @@ ex ex0(.rst(rst),
 
 always #200 rst = ~rst;
 
-initial
-  begin
+initial begin
     alu_control = 4'b0000;
     alu_src1 = 32'h1257_89Ab;
     alu_src2 = 32'hFEAB_BC76;
     // alu_src1 = 32'h00000001;
     // alu_src2 = 32'h00000002;
     #20;
-    for(i=0;i<12;i=i+1)
-      begin
+    for(i=0;i<12;i=i+1) begin
         $monitor("alu_src1=%h, alu_control=%b, alu_src2=%h, alu_result=%h",
                  alu_src1,alu_control,alu_src2,alu_result);
         #20;
         alu_control = alu_control+1;
-      end
+    end
     #40 $finish;
-  end
+end
 
 endmodule

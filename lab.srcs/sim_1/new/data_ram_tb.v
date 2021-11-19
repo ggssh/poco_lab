@@ -32,10 +32,9 @@ data_ram data_ram0(.clk(clk),.ce(ce),.we(we),.addr(addr),.sel(sel),.data_i(data_
 
 integer i,j,k;
 initial
-  clk = 1;
+    clk = 1;
 always #10 clk=~clk;
-initial
-  begin
+initial begin
     ce = 0;
     we = 0;
     sel = 4'b0001;
@@ -43,24 +42,21 @@ initial
     addr = 0;
     #100 ce = 1;
     we = 1;
-    for(j=0;j<10;j=j+1)
-      begin
+    for(j=0;j<10;j=j+1) begin
         sel = 4'b0001;
-        for(i=0;i<4;i=i+1)
-          begin
+        for(i=0;i<4;i=i+1) begin
             #40
              addr = addr + 1;
             sel = sel <<1;
             data_i = data_i-32'h01010101;
-          end
-      end
+        end
+    end
 
     #40;
     we = 0;
-    for(k = 0;k<40;k=k+1)
-      begin
+    for(k = 0;k<40;k=k+1) begin
         addr = k;
         #20;
-      end
-  end
+    end
+end
 endmodule

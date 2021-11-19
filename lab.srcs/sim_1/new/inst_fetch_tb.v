@@ -26,8 +26,7 @@ reg rst;
 wire[31:0] inst_o;
 
 inst_fetch inst_fetch0(.rst(rst),.clk(clk),.inst_o(inst_o));
-initial
-  begin
+initial begin
     clk <= 1;
     rst <= 0;
     #30
@@ -35,9 +34,8 @@ initial
     #100
      rst <= 0;
     #1000 $finish;
-  end
-always
-  begin
+end
+always begin
     #10 clk <= ~clk;
-  end
+end
 endmodule

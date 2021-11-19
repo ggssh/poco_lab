@@ -21,9 +21,9 @@
 
 
 module inst_fetch(
-         input wire rst,
-         input wire clk,
-         output wire[31:0] inst_o //元件例化输出使用wire连接
+           input wire rst,
+           input wire clk,
+           output wire[31:0] inst_o //元件例化输出使用wire连接
        );
 
 wire[31:0] pc;

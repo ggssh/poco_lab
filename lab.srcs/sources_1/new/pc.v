@@ -21,33 +21,27 @@
 
 
 module pc(
-         input wire rst,
-         input wire clk,
-         output reg ce,
-         output reg[31:0] pc
+           input wire rst,
+           input wire clk,
+           output reg ce,
+           output reg[31:0] pc
        );
 
-always @(posedge clk)
-  begin
-    if(rst == 1)
-      begin
+always @(posedge clk) begin
+    if(rst == 1) begin
         ce <= 0;
-      end
-    else
-      begin
+    end
+    else begin
         ce <= 1;
-      end
-  end
+    end
+end
 
-always @(posedge clk)
-  begin
-    if(ce == 0)
-      begin
+always @(posedge clk) begin
+    if(ce == 0) begin
         pc <= 32'h0;
-      end
-    else
-      begin
+    end
+    else begin
         pc <= pc + 32'h4;
-      end
-  end
+    end
+end
 endmodule

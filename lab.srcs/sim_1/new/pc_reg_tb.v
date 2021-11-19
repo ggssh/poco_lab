@@ -27,18 +27,16 @@ reg rst;
 wire ce;
 wire [31:0] pc;
 pc_reg pc0(.clk(clk),.rst(rst),.ce(ce),.pc(pc));
-initial
-  begin
+initial begin
     clk <=1;
     rst <=0;
     #50
      rst <=1;
     #50
      rst <=0;
-  end
-always
-  begin
+end
+always begin
     #20
      clk <= ~clk;
-  end
+end
 endmodule
