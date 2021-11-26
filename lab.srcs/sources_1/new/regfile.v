@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+`include "defines.v"
 //////////////////////////////////////////////////////////////////////////////////
 // Company:
 // Engineer:
@@ -34,6 +35,14 @@ module regfile(
            output reg[31:0] rdata2//第二个读寄存器端口输出的寄存器值
        );
 reg[31:0] regs[0:31];
+integer i;
+initial begin
+    regs[1]=32'h12345678;
+    for(i=2;i<32;i=i+1) begin
+        regs[i]=regs[i-1]+32'h01010101;
+    end
+end
+
 always @(posedge clk) begin
     if(rst==1'b0) begin
         if((we==1'b1)&&(waddr!=5'b0)) begin

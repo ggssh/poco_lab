@@ -26,7 +26,12 @@ module ex(
            input [`AluOpBus] alu_control,// ALU控制信号
            input [`RegBus] alu_src1,// ALU操作数1,为补码
            input [`RegBus] alu_src2,// ALU操作数2,为补码
-           output reg [`RegBus] alu_result// AlU运算结果
+           output reg [`RegBus] alu_result,// AlU运算结果
+
+           output reg[`RegAddrBus] wd_o,
+           output reg wreg_o,
+           input wire wreg_i,
+           input wire[`RegAddrBus] wd_i
        );
 
 wire[`RegBus] alu_src2_mux;
@@ -44,8 +49,12 @@ assign src1_lt_src2 = (alu_control==`SLT_OP)? // signed : unsigned
 always @(*) begin
     if(rst == `RstEnable) begin
         alu_result = `ZeroWord;
+        wd_o=`NOPRegAddr;
+        wreg_o=`WriteDisable;
     end
     else begin
+        wd_o=wd_i;
+        wreg_o=wreg_i;
         case(alu_control)
             `ADD_OP,`SUB_OP: begin
                 alu_result = result_sum;

@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+`include "defines.v"
 //////////////////////////////////////////////////////////////////////////////////
 // Company:
 // Engineer:
@@ -27,8 +28,10 @@ module inst_rom(
        );
 
 reg[31:0] inst_mem[0:131071];
+
 initial
-    $readmemh("E:/main/project/HDL_projects/test1/initial_data/inst_rom.data",inst_mem);
+    $readmemh("../../../../initial_data/inst_rom1.data",inst_mem);
+
 always @(*) begin
     if(ce == 0) begin
         inst <= 32'b0;

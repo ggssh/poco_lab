@@ -10,3 +10,7 @@ lab.sim/
 lab.xpr
 
 *.wcfg
+
+lab.runs/
+
+.Xil/
