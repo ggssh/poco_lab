@@ -37,6 +37,7 @@ module regfile(
 reg[31:0] regs[0:31];
 integer i;
 initial begin
+    regs[0]=32'h0;
     regs[1]=32'h12345678;
     for(i=2;i<32;i=i+1) begin
         regs[i]=regs[i-1]+32'h01010101;
@@ -58,6 +59,7 @@ always @(*) begin
     else if ((raddr1==5'b0)&&(re1==1'b1)) begin
         rdata1 <= 32'h0;
     end
+    // 解决数据相关问题
     else if ((raddr1==waddr)&&(we==1'b1)&&(re1==1'b1)) begin
         rdata1 <= wdata;
     end
